@@ -7,4 +7,4 @@ Secure peer-to-peer high-level device manager in Python
 4. Peer-to-peer SSL connections, distributed cerficate system
 5. GUI implemented with Kivy
 
-HOWTO for setup and runn will be added
+HOWTO for setup and run will be added
