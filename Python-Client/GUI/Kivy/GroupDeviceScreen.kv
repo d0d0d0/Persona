@@ -1,0 +1,101 @@
+<GroupDeviceScreen>:
+    Logo:
+    FloatLayout:
+        name:'gdevice'
+        orientation: 'vertical'
+        padding: 20
+
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: '../static/background.jpg'
+
+<GroupDeviceList>:
+    padding: 50,120,0,10
+
+[CustomGroupDeviceItem@SelectableView+BoxLayout]:
+    size_hint_x: 0.5
+    size_hint_y: ctx.size_hint_y
+    height: ctx.height
+    Image:
+        size_hint_x: None
+        size: 100, 100
+        source: GroupDeviceListItem.get_logo(GroupDeviceListItem.text)
+
+    GroupDeviceListButton:
+        id: GroupDeviceListItem
+        text: ctx.text
+        is_selected: ctx.is_selected
+
+    BoxLayout:
+        size_hint: 0.2, 0.5
+        orientation: 'vertical'
+        Button:
+            disabled_color: 0,0,0,0
+            background_color: 0.4, 0.4, 0.4, 0
+            on_press: GroupDeviceListItem.add_device()
+            Image:
+                source: '../static/plus.png'
+                y: self.parent.y + 5
+                x: self.parent.x + 10
+                size: 40, 40
+
+<CapabilitySwitch>:
+    padding: 45, 15, 15, 15
+    spacing: 10, 5
+    Label:
+        id: SSHFS
+        text: 'SSHFS'
+        font_size: 13
+    Switch:
+        on_active: submit.toggle(SSHFS.text)
+    Label:
+        id: send_file
+        text: 'Send File'
+        font_size: 13
+    Switch:
+        on_active: submit.toggle(send_file.text)
+    Label:
+        id: camera
+        text: 'Camera'
+        font_size: 13
+    Switch:
+        on_active: submit.toggle(camera.text)
+    Label:
+        id: sensor
+        text: 'Sensor'
+        font_size: 13
+    Switch:
+        on_active: submit.toggle(sensor.text)
+    Label:
+        id: gps
+        text: 'GPS'
+        font_size: 13
+    Switch:
+        on_active: submit.toggle(gps.text)
+    Label:
+        id: other
+        text: 'Other'
+        font_size: 13
+    Switch:
+        on_active: submit.toggle(other.text)
+
+    GroupDeviceListButton:
+        id: submit
+        background_color: 0,0,0,0
+
+    Button:
+        background_color: 0.4, 0.4, 0.4, 0
+        on_release: submit.add_confirm()
+        Image:
+            source: '../static/confirm.png'
+            y: self.parent.y + 5
+            x: self.parent.x + 30
+            size: 45, 45
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+<FunctionalityList>:
+    padding: 40, 40, 40, 40
+    spacing: 20, 20
+
+    FuncListButton:
+        text: 'sshfs'
+        disabled: self.parent.is_button_disabled(self.text)
+        on_press: dummy_button.get_remote_filesystem()
+
+    FuncListButton:
+        text: 'sendfile'
+        disabled: self.parent.is_button_disabled(self.text)
+        on_press: dummy_button.get_local_filesystem()
+
+    FuncListButton:
+        text: 'camera'
+        disabled: self.parent.is_button_disabled(self.text)
+        on_press: dummy_button.camera_request()
+
+    FuncListButton:
+        text: 'sensor'
+        disabled: self.parent.is_button_disabled(self.text)
+        on_press: dummy_button.sensor_request()
+
+    FuncListButton:
+        text: 'gps'
+        disabled: self.parent.is_button_disabled(self.text)
+        on_press: dummy_button.get_location()
+
+    FuncListButton:
+        text: 'other'
+        disabled: self.parent.is_button_disabled(self.text)
+        on_press: dummy_button.other_request()
+
+    DeviceListButton:
+        background_color: 0,0,0,0
+        id: dummy_button
+
+<DeviceListButton>:
+
+<FuncListButton>:
+    color: 0,0,0,0
+    disabled_color: 0,0,0,0
+    background_color: 0.9, 0.9, 0.9, 0.9
+    Image:
+        source: self.parent.get_logo(self.parent.text)
+        y: self.parent.y + 6
+        x: self.parent.x + 6
+        size: 50, 50

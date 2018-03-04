@@ -1,0 +1,54 @@
+#:include Kivy/Utilities.kv
+
+<RegisterScreen>:
+    Logo:
+    FloatLayout:
+        name:'register'
+        orientation: 'vertical'
+        padding: 20
+
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: '../static/background.jpg'
+
+        InputBox:
+            id: username
+            hint_text: 'Username'
+            pos_hint: {'x': .35, 'y': .7}
+        Seperator:
+            pos_hint: {'x': .35, 'y': .7}
+
+        InputBox:
+            id: password
+            hint_text: 'Password'
+            password: True
+            pos_hint: {'x': .35, 'y': .6}
+        Seperator:
+            pos_hint: {'x': .35, 'y': .6}
+
+        InputBox:
+            id: email
+            hint_text: 'Mail address'
+            pos_hint: {'x': .35, 'y': .5}
+        Seperator:
+            pos_hint: {'x': .35, 'y': .5}
+
+        InputBox:
+            id: name
+            hint_text: 'Name'
+            pos_hint: {'x': .35, 'y': .4}
+        Seperator:
+            pos_hint: {'x': .35, 'y': .4}
+
+        Button:
+            text: 'Register'
+            size_hint: 0.3, 0.05
+            pos_hint: {'x': .35, 'y': .30}
+            on_press: root.register(username.text, password.text, name.text, email.text)
+
+        SubtleLabel:
+            text: '[ref=world]Go back to login screen[/ref]'
+            pos_hint: {'center_x': .57, 'center_y': .38}
+            on_ref_press: root.manager.current = 'login'

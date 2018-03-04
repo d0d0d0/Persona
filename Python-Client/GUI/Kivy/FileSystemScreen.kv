@@ -1,0 +1,27 @@
+<FileSystemScreen>:
+    Logo:
+    FloatLayout:
+        name:'file_system'
+        orientation: 'vertical'
+        padding: 20
+
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: '../static/background.jpg'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50, 100, 50, 10
+        RemoteFileChooserView:
+            id: filechooser
+            path: self.get_root()
+            on_submit: root.request(filechooser.path, filechooser.selection)
+
+    Button:
+        text: 'Send'
+        size_hint: 0.1, 0.05
+        pos_hint: {'x': .87, 'y': .05}
+        on_press: root.send(filechooser.path, filechooser.selection)
+
+

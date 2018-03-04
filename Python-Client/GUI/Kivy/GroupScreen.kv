@@ -1,0 +1,78 @@
+<GroupScreen>:
+    on_pre_enter: self.on_enter_refresh()
+    Logo:
+        Button:
+            background_color: (0, 0, 0, 0)
+            size_hint: 0.05, 0.1
+            pos_hint: {'x': .80, 'y': .90}
+            on_press: root.add_group_popup()
+            Image:
+                source: '../static/add_group.png'
+                y: self.parent.y - 5
+                x: self.parent.x
+                size: 45, 45
+
+    FloatLayout:
+        name:'group'
+        orientation: 'vertical'
+        padding: 20
+
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: '../static/background.jpg'
+
+<AddGroupPanel>:
+    name: 'add_group'
+    orientation: 'vertical'
+    padding: 20
+
+    InputBox:
+        id: group_name
+        hint_text: 'Enter group name'
+        size_hint: 0.4, 0.22
+        pos_hint: {'x': .25, 'y': .60}
+    Seperator:
+        size_hint: 0.5, 0
+        pos_hint: {'x': .25, 'y': .60}
+
+    Button:
+        text: 'Add'
+        size_hint: 0.25, 0.20
+        pos_hint: {'x': .5, 'y': .25}
+        on_press: root.add_group(group_name.text)
+
+<GroupList>:
+    padding: 30,120,0,10
+
+[CustomGroupItem@SelectableView+BoxLayout]:
+    size_hint_x: 0.5
+    size_hint_y: ctx.size_hint_y
+    height: ctx.height
+    Image:
+        size_hint_x: None
+        size: 100, 100
+        source: '../static/group_logo.png'
+
+    GroupListButton:
+        id: GroupListItem
+        text: ctx.text
+        on_press: self.click()
+
+    BoxLayout:
+        size_hint: 0.2, 0.5
+        orientation: 'vertical'
+        Button:
+            disabled_color: 0,0,0,0
+            background_color: 0.4, 0.4, 0.4, 0
+            on_press: GroupListItem.add_device()
+            Image:
+                source: '../static/add_device.png'
+                y: self.parent.y + 5
+                x: self.parent.x + 10
+                size: 45, 45
+
+<SensorPanel>:
+    padding: 45, 15, 15, 15
+    spacing: 10, 5

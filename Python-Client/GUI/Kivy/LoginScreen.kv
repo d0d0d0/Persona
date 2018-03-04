@@ -1,0 +1,95 @@
+<LoginScreen>:
+    Logo:
+    FloatLayout:
+        name: 'login'
+        orientation: 'vertical'
+        padding: 20
+
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: '../static/background.jpg'
+
+        InputBox:
+            id: username
+            hint_text: 'Username'
+            pos_hint: {'x': .35, 'y': .6}
+        Seperator:
+            pos_hint: {'x': .35, 'y': .6}
+
+        InputBox:
+            id: password
+            hint_text: 'Password'
+            password: True
+            pos_hint: {'x': .35, 'y': .5}
+        Seperator:
+            pos_hint: {'x': .35, 'y': .5}
+
+        SubtleLabel:
+            text: '[ref=world]Forgot password?[/ref]'
+            color: 0.3,0.3,0.3, 0.8
+            pos_hint: {'center_x': .49, 'center_y': .57}
+            on_ref_press: root.forgot_password()
+
+        Button:
+            text: 'Login'
+            size_hint: 0.250, 0.065
+            pos_hint: {'x': .38, 'y': .34}
+            on_press: root.login(username.text, password.text)
+
+        Button:
+            disabled_color: 0,0,0,0
+            background_color: 0.4, 0.4, 0.4, 0
+            size_hint: 0.250, 0.075
+            pos_hint: {'x': .38, 'y': .24}
+            on_press: root.login(username.text, password.text, True)
+            Image:
+                source: '../static/facebook-login-button.png'
+                y: self.parent.y - 26
+                x: self.parent.x
+                allow_stretch: True
+                size: 200, 100
+
+        SubtleLabel:
+            text: '[ref=world]Create an account[/ref]'
+            color: 0.3, 0.3, 0.3, 0.8
+            pos_hint: {'center_x': .59, 'center_y': .31}
+            on_ref_press: root.manager.current = 'register'
+
+<AddDevicePanel>:
+    name: 'add_device'
+    padding: 20
+
+    InputBox:
+        id: device_name
+        hint_text: 'Enter device name'
+        size_hint: 0.4, 0.22
+        pos_hint: {'x': .25, 'y': .60}
+    Seperator:
+        size_hint: 0.5, 0
+        pos_hint: {'x': .25, 'y': .60}
+
+    Button:
+        text: 'Add'
+        size_hint: 0.25, 0.20
+        pos_hint: {'x': .5, 'y': .25}
+        on_press: root.add_device(device_name.text)
+
+
+<ReconnectPanel>:
+    name: 'reconnect'
+    padding: 20
+
+    Label:
+        text: 'Click [b]Reconnect[/b] button after checking your Internet connection.'
+        markup: True
+        text_size: 600, None
+        font_size: 14
+        pos_hint: {'x': 0.2, 'y': .25}
+
+    Button:
+        text: 'Reconnect'
+        size_hint: 0.35, 0.25
+        pos_hint: {'x': .3, 'y': .25}
+        on_press: root.reconnect()
